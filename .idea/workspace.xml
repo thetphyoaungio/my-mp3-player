@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a8f9e97-86b0-49d9-9484-7f84364c701d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/AudioList.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/AudioList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/00.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/01.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/02_MYITTER.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/03_payategyi 11.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/04 Dhammasetkyar_Anattaletkhana_Maharthamaya.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracks/05.mp3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +46,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="360" y="120" width="1200" height="800" key="AVDManager" timestamp="1621533752772">
+    <state x="360" y="120" width="1200" height="800" key="AVDManager" timestamp="1621684021220">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="360" y="120" width="1200" height="800" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1621533752772" />
+    <state x="360" y="120" width="1200" height="800" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1621684021220" />
   </component>
 </project>

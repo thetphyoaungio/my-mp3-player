@@ -1,74 +1,105 @@
 import React, { Component } from 'react';
-import {View, StyleSheet,Text, ScrollView} from 'react-native';
-//import { AudioContext } from '../context/AudioProvider'
+import {StyleSheet, Dimensions} from 'react-native';
+import {DataProvider, RecyclerListView, LayoutProvider} from 'recyclerlistview';
+import AudioListItem from '../components/AudioListItem';
+import Screen from '../components/Screen';
+import OptionModal  from '../components/OptionModal';
+import {Audio} from 'expo-av';
+import tracks from '../../tracks/tracks.js';
+import {play, pause, resume} from '../misc/audioController';
 
-const mediaAssets = [
-    // {
-    //   "id": "1111",
-    //   "uri": require('../../tracks/00.mp3'),
-    //   "title": "Longing",
-    //   "artist": "David Chavez",
-    //   "artwork": "",
-    //   "duration": 143
-    // },
-    // {
-    //   "id": "2222",
-    //   "uri": require('../../tracks/01.mp3'),
-    //   "title": "Soul Searching (Demo)",
-    //   "artist": "David Chavez",
-    //   "artwork": "",
-    //   "duration": 77
-    // },
-    {
-        "id": "1111",
-        "url": "https://drive.google.com/uc?export=download&id=1AjPwylDJgR8DOnmJWeRgZzjsohi-7ekj",
-        "title": "Longing",
-        "artist": "David Chavez",
-        "artwork": "https://i.picsum.photos/id/100/200/200.jpg",
-        "duration": 143
-      },
-      {
-        "id": "2222",
-        "url": "https://drive.google.com/uc?export=download&id=1VM9_umeyzJn0v1pRzR1BSm9y3IhZ3c0E",
-        "title": "Soul Searching (Demo)",
-        "artist": "David Chavez",
-        "artwork": "https://i.picsum.photos/id/200/200/200.jpg",
-        "duration": 77
-      },
-      {
-        "id": "3333",
-        "url": "https://drive.google.com/uc?export=download&id=1bmvPOy2IVbkUROgm0dqiZry_miiL4OqI",
-        "title": "Lullaby (Demo)",
-        "artist": "David Chavez",
-        "artwork": "https://i.picsum.photos/id/300/200/200.jpg",
-        "duration": 71
-      },
-      {
-        "id": "4444",
-        "url": "https://drive.google.com/uc?export=download&id=1V-c_WmanMA9i5BwfkmTs-605BQDsfyzC",
-        "title": "Rhythm City (Demo)",
-        "artist": "David Chavez",
-        "artwork": "https://i.picsum.photos/id/400/200/200.jpg",
-        "duration": 106
-      },
+const mediaAssets = tracks;
 
-];
+const dataProvider = new DataProvider((r1,r2)=>r1!==r2);
 
 class AudioList extends Component {
-    //static contextType = AudioContext;
+  list = dataProvider.cloneWithRows(mediaAssets,mediaAssets);
 
-    render() {
-        return (
-            // <View style={styles.container}>
-            //     <Text>Audio List...</Text>
-            // </View>
-
-            <ScrollView>
-                {/* {this.context.audioFiles.map(item => <Text key={item.id}>{item.filename}</Text> )} */}
-                {mediaAssets.map(item => <Text style={styles.list_text} key={item.id}>{item.title}</Text> )}
-            </ScrollView>
-        );
+  layoutProvider = new LayoutProvider((i)=>'audio', (type,dim)=>{
+    switch(type){
+        case 'audio':{
+            dim.width = Dimensions.get('window').width;
+            dim.height = 70;
+            break;
+        }
+        default:{
+            dim.width = 0;
+            dim.height = 0;
+        }
     }
+  });
+
+  handleAudioPress = async (audio) => {
+    
+    //play first time
+    if(!this.state.soundObj){
+      const playbackObj = new Audio.Sound();
+      //playbackObj
+      
+      const status = await play(playbackObj,audio.uri);
+      
+      return this.setState({...this.state, playbackObj:playbackObj, soundObj:status, currentAudio:audio});
+    }
+
+    //pause the audio
+    if(this.state.soundObj.isLoaded && this.state.soundObj.isPlaying){
+      const status = await pause(this.state.playbackObj);
+      return this.setState({...this.state, soundObj:status});
+    }
+
+    //resume the audio
+    if(this.state.soundObj.isLoaded && !this.state.soundObj.isPlaying && this.state.currentAudio.id===audio.id){
+      const status = await resume(this.state.playbackObj);
+      return this.setState({...this.state, soundObj:status});
+    }
+
+  }
+  
+  rowRenderer = (type,item) => {
+    return (
+      <AudioListItem 
+      title={item.title} 
+      duration={item.duration } 
+      onOptionPress={()=>{
+        this.currentItem = item;
+        this.setState({...this.state, optionModalVisible:true})
+      }}
+      onAudioPress={()=>this.handleAudioPress(item)} />
+    )
+  };
+  
+  constructor(props){
+    super(props);
+
+    this.state = {
+      optionModalVisible:false,
+      playbackObj:null,
+      soundObj:null,
+      currentAudio:{}
+    }
+
+    this.currentItem = {}
+  }
+
+  render() {
+    return (
+        <Screen>
+        <RecyclerListView 
+        dataProvider={this.list} 
+        layoutProvider={this.layoutProvider}
+        rowRenderer={this.rowRenderer} />
+
+        <OptionModal 
+        onPlayPress={()=>{console.log('Play Pressed!')}} 
+        onPlayListPress={()=>{console.log('PlayList Pressed!')}}
+        currentItem={this.currentItem}
+        onClose={() => {
+          this.setState({...this.state, optionModalVisible:false})
+        }} 
+        visible={this.state.optionModalVisible} />
+        </Screen>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
