@@ -27,3 +27,12 @@ export const resume = async (playbackObj) => {
 }
 
 //next
+export const playNext = async (playbackObj, uri) => {
+    try{
+        await playbackObj.stopAsync();
+        await playbackObj.unloadAsync();
+        return await play(playbackObj, uri);
+    }catch(error){
+        console.log('Error in play-next controller: ', error.message);
+    }
+}

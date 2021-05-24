@@ -1,8 +1,7 @@
 export default tracks = [
-    {
+    /* {
       id: 1,
       uri: require('../tracks/01.ရေခင်းဗျောတီးလုံး.mp3'),
-      //../../tracks/01.ရေခင်းဗျောတီးလုံး.mp3
       title: "ရေခင်းဗျောတီးလုံး",
       artist: "Credit",
       artwork: "",
@@ -47,5 +46,37 @@ export default tracks = [
       artist: "Credit",
       artwork: "",
       duration: 304
+    }, */
+    {
+      id: 1,
+      uri: require('../tracks/test/ringtones/2015-best-sound-4073.mp3'),
+      title: "sample1",
+      artist: "Credit",
+      artwork: "",
+      duration: 8
+    },
+    {
+      id: 2,
+      uri: require('../tracks/test/ringtones/gopack-5168.mp3'),
+      title: "sample2",
+      artist: "Credit",
+      artwork: "",
+      duration: 4
+    },
+    {
+      id: 3,
+      uri: require('../tracks/test/ringtones/gs-16b-2c-44100hz.mp3'),
+      title: "sample3",
+      artist: "Credit",
+      artwork: "",
+      duration: 16
+    },
+    {
+      id: 4,
+      uri: require('../tracks/test/ringtones/heybabyringtone-3905.mp3'),
+      title: "sample4",
+      artist: "Credit",
+      artwork: "",
+      duration: 6
     },
 ];

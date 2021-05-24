@@ -1,122 +1,131 @@
-// import React, { Component, createContext } from 'react';
-// import {Alert} from 'react-native';
-// import * as MediaLibrary from 'expo-media-library';
+import React, { Component, createContext } from 'react';
+import {DataProvider} from 'recyclerlistview';
+import tracks from '../../tracks/tracks.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Audio}from 'expo-av';
+import {storeAudioForNextOpening} from '../misc/helper';
+import {play, pause, resume, playNext} from '../misc/audioController';
 
-// export const AudioContext = createContext();
+export const AudioContext = createContext();
 
-// const mediaAssets = [
-//     {
-//       "id": "1111",
-//       "uri": require('../../tracks/00.mp3'),
-//       "title": "Longing",
-//       "artist": "David Chavez",
-//       "artwork": "",
-//       "duration": 143
-//     },
-//     {
-//       "id": "2222",
-//       "uri": require('../../tracks/01.mp3'),
-//       "title": "Soul Searching (Demo)",
-//       "artist": "David Chavez",
-//       "artwork": "",
-//       "duration": 77
-//     },
-//   ];
+class AudioProvider extends Component {
+    constructor(props){
+        super(props);
 
-// class AudioProvider extends Component {
-//     constructor(props){
-//         super(props);
+        this.state = {
+            audioFiles:[],
+            dataProvider:new DataProvider((r1,r2)=>r1!==r2),
+            playbackObj:null,
+            soundObj:null,
+            currentAudio:{},
+            isPlaying:false,
+            currentAudioIndex:null,
+            playbackPosition:null,
+            playbackDuration:null
+        }
 
-//         this.state = {
-//             audioFiles:this.mediaAssets
-//         }
-//     }
+        this.totalAudioCount = 0;
+    }
 
-//     // permissionAlert = () => {
-//     //     Alert.alert('Permission Required', 'This app needs to read audio files!', [
-//     //         {text:'I\'m ready', onPress:()=>{this.getPermission()}},
-//     //         {text:'Cancel', onPress:()=>{this.permissionAlert()}},
-//     //     ])
-//     // }
+    onPlaybackStatusUpdate = async (playbackStatus) => {
+        if(playbackStatus.isLoaded && playbackStatus.isPlaying){
+          this.updateState(this,{
+            playbackPosition:playbackStatus.positionMillis,
+            playbackDuration:playbackStatus.durationMillis,
+          })
+        }
+    
+        if(playbackStatus.didJustFinish){
+          const nextAudioIndex = this.state.currentAudioIndex + 1;
+    
+          //if there is no next audio or current audio is the last
+          if(nextAudioIndex >= this.totalAudioCount){
+            
+            await this.state.playbackObj.unloadAsync();
+            this.updateState(this, {
+              soundObj:null, 
+              currentAudio:this.state.audioFiles[0], 
+              isPlaying:false, 
+              currentAudioIndex:0, 
+              playbackPosition:null,
+              playbackDuration:null
+            });
+    
+            return await storeAudioForNextOpening(this.state.audioFiles[0], 0);
+          }
+    
+          //otherwise we want to select another audio
+          const audio = this.state.audioFiles[nextAudioIndex];
+          const status = await playNext(this.state.playbackObj, audio.uri);
+    
+          this.updateState(this, {
+            soundObj:status, 
+            currentAudio:audio, 
+            isPlaying:true, 
+            currentAudioIndex:nextAudioIndex
+          });
+    
+          await storeAudioForNextOpening(audio, nextAudioIndex);
+        }
+    }
 
-//     // getAudioFiles = async () => {
-//     //     // const media = await MediaLibrary.getAssetsAsync({
-//     //     //     mediaType:'audio'
-//     //     // });
-//     //     // console.log(media);
+    componentDidMount(){
+        const {dataProvider,audioFiles} = this.state;
 
-//     //     // const media = await MediaLibrary.getAssetsAsync({
-//     //     //     mediaType:'audio',
-//     //     //     first:media.totalCount
-//     //     // });
+        this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks]});
 
-//     //     const media = {
-//     //         assets: Array [
-//     //         //   Object {
-//     //         //     "albumId": "-983182191",
-//     //         //     "creationTime": 0,
-//     //         //     "duration": 119.96,
-//     //         //     "filename": "900-2105061514.amr",
-//     //         //     "height": 0,
-//     //         //     "id": "101899",
-//     //         //     "mediaType": "audio",
-//     //         //     "modificationTime": 1620290803000,
-//     //         //     "uri": "file:///storage/emulated/0/Recordings/Call Recordings/900-2105061514.amr",
-//     //         //     "width": 0,
-//     //         //   },
-//     //         mediaAssets
-//     //         ],
-//     //         endCursor: 1,
-//     //         hasNextPage: false,
-//     //         totalCount: 1,
-//     //       }
+        this.totalAudioCount = tracks.length;
 
-//     //     this.setState({...this.state, audioFiles:media.assets})
-//     // }
+        if(!this.state.playbackObj){
+            this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks],playbackObj:new Audio.Sound()});
+        }else{
+            this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks]});
+        }
+    }
 
-//     // getPermission = async () => {
-//     //     const permission = await MediaLibrary.getPermissionsAsync()
-//     //     // {
-//     //     //     "canAskAgain": true,
-//     //     //     "expires": "never",
-//     //     //     "granted": false,
-//     //     //     "status": "undetermined",
-//     //     // }
-//     //     if(permission.granted){
-//     //         // we want to get all audio files
-//     //         this.getAudioFiles();
-//     //     }
+    updateState = (prevState, newState={}) => {
+        this.setState({...prevState, ...newState})
+    }
 
-//     //     if(!permission.granted && permission.canAskAgain){
-//     //         const {status, canAskAgain} = await MediaLibrary.requestPermissionsAsync();
+    loadPreviousAudio = async () => {
+        let previousAudio = await AsyncStorage.getItem('previousAudio');
+        let currentAudio, currentAudioIndex;
 
-//     //         if(status==='denied' && canAskAgain){
-//     //             // alert to user that must allow to work app
-//     //             this.permissionAlert();
-//     //         }
+        if(!previousAudio){
+            currentAudio = this.state.audioFiles[0];
+            currentAudioIndex = 0;
+        }else{
+            previousAudio=JSON.parse(previousAudio);
+            currentAudio = previousAudio.audio;
+            currentAudioIndex = previousAudio.index;
+        }
 
-//     //         if(status==='granted'){
-//     //             // we want to get all audio files
-//     //             this.getAudioFiles();
-//     //         }
+        this.setState({...this.state, currentAudio, currentAudioIndex})
+    }
 
-//     //         if(status==='denied' && !canAskAgain){
-//     //             // alert to user that some error
-//     //         }
-//     //     }
-//     // }
+    render() {
+        const {audioFiles, dataProvider, playbackObj, soundObj, currentAudio, isPlaying, currentAudioIndex, playbackPosition, playbackDuration} = this.state;
 
-//     componentDidMount(){
-//         //this.getPermission();
-//     }
+        return (
+            <AudioContext.Provider value={{
+                audioFiles, 
+                dataProvider, 
+                playbackObj, 
+                soundObj, 
+                currentAudio,
+                isPlaying,
+                currentAudioIndex,
+                totalAudioCount:this.totalAudioCount,
+                playbackPosition,
+                playbackDuration,
+                updateState:this.updateState,
+                loadPreviousAudio:this.loadPreviousAudio,
+                onPlaybackStatusUpdate:this.onPlaybackStatusUpdate,
+            }}>
+                {this.props.children}
+            </AudioContext.Provider>
+        );
+    }
+}
 
-//     render() {
-//         return (
-//             <AudioContext.Provider value={{audioFiles:this.state.audioFiles}}>
-//                 {this.props.children}
-//             </AudioContext.Provider>
-//         );
-//     }
-// }
-
-// export default AudioProvider;
+export default AudioProvider;
