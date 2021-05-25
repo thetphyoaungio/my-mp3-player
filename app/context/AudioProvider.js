@@ -14,6 +14,8 @@ class AudioProvider extends Component {
 
         this.state = {
             audioFiles:[],
+            playList:[],
+            addToPlayList:null,
             dataProvider:new DataProvider((r1,r2)=>r1!==r2),
             playbackObj:null,
             soundObj:null,
@@ -42,7 +44,7 @@ class AudioProvider extends Component {
           if(nextAudioIndex >= this.totalAudioCount){
             
             await this.state.playbackObj.unloadAsync();
-            this.updateState(this, {
+            return this.updateState(this, {
               soundObj:null, 
               currentAudio:this.state.audioFiles[0], 
               isPlaying:false, 
@@ -51,7 +53,7 @@ class AudioProvider extends Component {
               playbackDuration:null
             });
     
-            return await storeAudioForNextOpening(this.state.audioFiles[0], 0);
+            //return await storeAudioForNextOpening(this.state.audioFiles[0], 0);
           }
     
           //otherwise we want to select another audio
@@ -65,7 +67,7 @@ class AudioProvider extends Component {
             currentAudioIndex:nextAudioIndex
           });
     
-          await storeAudioForNextOpening(audio, nextAudioIndex);
+          //await storeAudioForNextOpening(audio, nextAudioIndex);
         }
     }
 
@@ -104,11 +106,25 @@ class AudioProvider extends Component {
     }
 
     render() {
-        const {audioFiles, dataProvider, playbackObj, soundObj, currentAudio, isPlaying, currentAudioIndex, playbackPosition, playbackDuration} = this.state;
+        const {
+            audioFiles,
+            playList,
+            addToPlayList,
+            dataProvider, 
+            playbackObj, 
+            soundObj, 
+            currentAudio, 
+            isPlaying, 
+            currentAudioIndex, 
+            playbackPosition, 
+            playbackDuration
+        } = this.state;
 
         return (
             <AudioContext.Provider value={{
                 audioFiles, 
+                playList,
+                addToPlayList,
                 dataProvider, 
                 playbackObj, 
                 soundObj, 

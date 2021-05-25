@@ -1,53 +1,69 @@
 export default tracks = [
-    /* {
+    {
       id: 1,
       uri: require('../tracks/01.ရေခင်းဗျောတီးလုံး.mp3'),
-      title: "ရေခင်းဗျောတီးလုံး",
+      title: "နံနက်ခင်း ကြည်နှူးဖွယ် ရေခင်းဗျောတီးလုံး",
       artist: "Credit",
       artwork: "",
       duration: 192
     },
     {
       id: 2,
-      uri: require('../tracks/02.မေတ္တာပို့.mp3'),
-      title: "မေတ္တာပို့",
+      uri: require('../tracks/02.မေတ္တာပို့မင်္ဂလာတေး.mp3'),
+      title: "မေတ္တာပို့ မင်္ဂလာတေး",
+      artist: "Credit",
+      artwork: "",
+      duration: 221
+    },
+    {
+      id: 3,
+      uri: require('../tracks/03.မေတ္တာပို့ဓမ္မတေး.mp3'),
+      title: "မေတ္တာပို့ ဓမ္မတေး",
       artist: "Credit",
       artwork: "",
       duration: 549
     },
     {
-      id: 3,
-      uri: require('../tracks/03.မေတ္တာသုတ်.mp3'),
+      id: 4,
+      uri: require('../tracks/04.မေတ္တာသုတ်.mp3'),
       title: "မေတ္တာသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
       artist: "Credit",
       artwork: "",
       duration: 1190
     },
     {
-      id: 4,
-      uri: require('../tracks/04.ပရိတ်ကြီး၁၁သုတ်.mp3'),
-      title: "ပရိတ်ကြီး၁၁သုတ်၊ တောင်တန်းသာသနာဆရာတော်ဘုရားကြီး",
+      id: 5,
+      uri: require('../tracks/05.ပရိတ်ကြီး၁၁သုတ်.mp3'),
+      title: "ပရိတ်ကြီး၁၁သုတ်၊ တောင်တန်းသာသနာပြု ဆရာတော်ဘုရားကြီး",
       artist: "Credit",
       artwork: "",
       duration: 3554
     },
     {
-      id: 5,
-      uri: require('../tracks/05.ဓမ္မစင်္ကြာ၊အနတ္တလက္ခဏသုတ်၊မဟာသမယသုတ်၊မင်းကွန်းဆရာတော်ဘုရားကြီး.mp3'),
+      id: 6,
+      uri: require('../tracks/06.ပဌာန်းတရားတော်.mp3'),
+      title: "ပဌာန်းဒေသနာတော်၊ ကြာနီကန်ဆရာတော်",
+      artist: "Credit",
+      artwork: "",
+      duration: 3655
+    },
+    {
+      id: 7,
+      uri: require('../tracks/07.ဓမ္မစင်္ကြာ၊အနတ္တလက္ခဏသုတ်၊မဟာသမယသုတ်၊မင်းကွန်းဆရာတော်ဘုရားကြီး.mp3'),
       title: "ဓမ္မစင်္ကြာ၊ အနတ္တလက္ခဏသုတ်၊ မဟာသမယသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
       artist: "Credit",
       artwork: "",
       duration: 2579
     },
     {
-      id: 6,
-      uri: require('../tracks/06.မေတ္တာပို့ဓမ္မတေး.mp3'),
-      title: "မေတ္တာပို့ ဓမ္မတေး",
+      id: 8,
+      uri: require('../tracks/08.မေတ္တာပို့ဓမ္မတေး၂.mp3'),
+      title: "မေတ္တာပို့ ဓမ္မတေး ၂",
       artist: "Credit",
       artwork: "",
       duration: 304
-    }, */
-    {
+    },
+    /* {
       id: 1,
       uri: require('../tracks/test/ringtones/2015-best-sound-4073.mp3'),
       title: "sample1",
@@ -78,5 +94,5 @@ export default tracks = [
       artist: "Credit",
       artwork: "",
       duration: 6
-    },
+    }, */
 ];

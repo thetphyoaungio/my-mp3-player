@@ -1,17 +1,17 @@
 import React, {useContext, useEffect} from 'react';
-import {View, StyleSheet,Text, Dimensions} from 'react-native';
+import {View, StyleSheet,Text, Dimensions, ImageBackground, Image, Animated} from 'react-native';
 import Screen from '../components/Screen';
 import color from '../misc/color';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import PlayerButton from '../components/PlayerButton';
 import {AudioContext} from '../context/AudioProvider';
-import { pause, play, playNext, resume } from '../misc/audioController'
-import { storeAudioForNextOpening } from '../misc/helper'
+import { pause, play, playNext, resume } from '../misc/audioController';
+//import { MaterialCommunityIcons } from '@expo/vector-icons';
+//import { storeAudioForNextOpening } from '../misc/helper';
 
 const {width} = Dimensions.get('window');
 
-const Player=()=> {
+const Player = () => {
     const context = useContext(AudioContext);
 
     const {playbackPosition, playbackDuration} = context;
@@ -98,7 +98,7 @@ const Player=()=> {
             playbackDuration:null,
         });
 
-        storeAudioForNextOpening(audio, index)
+        //storeAudioForNextOpening(audio, index)
     }
 
     handlePrevious = async () => { 
@@ -138,7 +138,7 @@ const Player=()=> {
             playbackDuration:null,
         });
 
-        storeAudioForNextOpening(audio, index)
+        //storeAudioForNextOpening(audio, index)
     }
 
     return (
@@ -146,7 +146,8 @@ const Player=()=> {
             <View style={styles.container}>
                 <Text style={styles.audioCount}>{`${context.currentAudioIndex + 1} / ${context.totalAudioCount}`}</Text>
                 <View style={styles.midBannerContainer}>
-                    <MaterialCommunityIcons name="music-circle" size={300} color={context.isPlaying? color.ACTIVE_BG:color.FONT_MEDIUM} />
+                    {/* <MaterialCommunityIcons name="music-circle" size={300} color={context.isPlaying? color.ACTIVE_BG:color.FONT_MEDIUM} /> */}
+                    <ImageBackground source={require('../../assets/my-imgs/Buddha_2.jpg')} style={styles.backageImg} />
                 </View>
 
                 <View style={styles.audioPlayerContainer}>
@@ -206,6 +207,12 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         paddingBottom:20,
+    },
+    backageImg:{
+        width:'100%',
+        height:'100%',
+        resizeMode:'cover',
+        position:'absolute',
     }
 })
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, ImageBackground} from 'react-native';
 import {RecyclerListView, LayoutProvider} from 'recyclerlistview';
 import { AudioContext } from '../context/AudioProvider';
 import AudioListItem from '../components/AudioListItem';
@@ -55,48 +55,6 @@ class AudioList extends Component {
     )
   };
 
-  /* onPlaybackStatusUpdate = async (playbackStatus) => {
-    if(playbackStatus.isLoaded && playbackStatus.isPlaying){
-      this.context.updateState(this.context,{
-        playbackPosition:playbackStatus.positionMillis,
-        playbackDuration:playbackStatus.durationMillis,
-      })
-    }
-
-    if(playbackStatus.didJustFinish){
-      const nextAudioIndex = this.context.currentAudioIndex + 1;
-
-      //if there is no next audio or current audio is the last
-      if(nextAudioIndex >= this.context.totalAudioCount){
-        
-        await this.context.playbackObj.unloadAsync();
-        this.context.updateState(this.context, {
-          soundObj:null, 
-          currentAudio:this.context.audioFiles[0], 
-          isPlaying:false, 
-          currentAudioIndex:0, 
-          playbackPosition:null,
-          playbackDuration:null
-        });
-
-        return await storeAudioForNextOpening(this.context.audioFiles[0], 0);
-      }
-
-      //otherwise we want to select another audio
-      const audio = this.context.audioFiles[nextAudioIndex];
-      const status = await playNext(this.context.playbackObj, audio.uri);
-
-      this.context.updateState(this.context, {
-        soundObj:status, 
-        currentAudio:audio, 
-        isPlaying:true, 
-        currentAudioIndex:nextAudioIndex
-      });
-
-      await storeAudioForNextOpening(audio, nextAudioIndex);
-    }
-  } */
-
   handleAudioPress = async (audio) => {
     const {
       playbackObj, 
@@ -121,9 +79,9 @@ class AudioList extends Component {
         currentAudioIndex:index
       });
 
-      playbackObj.setOnPlaybackStatusUpdate(this.context.onPlaybackStatusUpdate);
+      return playbackObj.setOnPlaybackStatusUpdate(this.context.onPlaybackStatusUpdate);
 
-      return storeAudioForNextOpening(audio, index);
+      //return storeAudioForNextOpening(audio, index);
     }
 
     //pause the audio
@@ -152,14 +110,14 @@ class AudioList extends Component {
       
       const index = audioFiles.indexOf(audio);
 
-      updateState(this.context, {
+      return updateState(this.context, {
         soundObj:status, 
         currentAudio:audio, 
         isPlaying:true, 
         currentAudioIndex:index
       });
 
-      return storeAudioForNextOpening(audio, index);
+      //return storeAudioForNextOpening(audio, index);
     }
 
   }
@@ -170,6 +128,7 @@ class AudioList extends Component {
         {({dataProvider, isPlaying})=>{
           return(
             <Screen>
+              <ImageBackground source={require('../../assets/my-imgs/Buddha_4.jpg')} style={styles.backageImg} />
               <RecyclerListView 
               dataProvider={dataProvider} 
               layoutProvider={this.layoutProvider}
@@ -177,8 +136,14 @@ class AudioList extends Component {
               extendedState={{isPlaying}} />
 
               <OptionModal 
-              onPlayPress={()=>{console.log('Play Pressed!')}} 
-              onPlayListPress={()=>{console.log('PlayList Pressed!')}}
+              /* onPlayPress={()=>{console.log('Play Pressed!')}} 
+              onPlayListPress={()=>{
+                this.context.updateState(this.context, {
+                  addToPlayList: this.currentItem
+                });
+
+                this.props.navigation.navigate('PlayList');
+              }} */
               currentItem={this.currentItem}
               onClose={() => {
                 this.setState({...this.state, optionModalVisible:false})
@@ -203,8 +168,13 @@ const styles = StyleSheet.create({
         borderBottomColor:'grey',
         borderBottomWidth:1
     },
-    srollview:{
-
+    backageImg:{
+      width:'100%',
+      height:'100%',
+      resizeMode:'cover',
+      position:'absolute',
+      opacity:0.3,
+      top:40
     }
 })
 

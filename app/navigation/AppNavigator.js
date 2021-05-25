@@ -18,10 +18,10 @@ const AppNavigator=()=> {
             options={{
                 tabBarIcon:({color, size})=>{return <FontAwesome5 name="compact-disc" size={size} color={color} />}
             }}/>
-            <Tab.Screen name="PlayList" component={PalyList} 
+            {/* <Tab.Screen name="PlayList" component={PalyList} 
             options={{
                 tabBarIcon:({color, size})=>{return <MaterialIcons name="library-music" size={size} color={color} />}
-            }}/>
+            }}/> */}
         </Tab.Navigator>
     );
 }
