@@ -7,7 +7,7 @@ import Screen from '../components/Screen';
 import OptionModal  from '../components/OptionModal';
 import {Audio} from 'expo-av';
 import {play, pause, resume, playNext} from '../misc/audioController';
-import { storeAudioForNextOpening } from '../misc/helper'
+import coverImags, { storeAudioForNextOpening, shuffle } from '../misc/helper';
 
 class AudioList extends Component { 
   static contextType = AudioContext;
@@ -20,6 +20,8 @@ class AudioList extends Component {
     }
 
     this.currentItem = {}
+    
+    this.coverImgs = shuffle(coverImags);
   }
 
   componentDidMount(){
@@ -123,12 +125,14 @@ class AudioList extends Component {
   }
 
   render() {
+    // this.coverImgs = shuffle(coverImags);
+
     return (
       <AudioContext.Consumer>
         {({dataProvider, isPlaying})=>{
           return(
             <Screen>
-              <ImageBackground source={require('../../assets/my-imgs/Buddha_4.jpg')} style={styles.backageImg} />
+              <ImageBackground source={this.coverImgs[0]} style={styles.backageImg} />
               <RecyclerListView 
               dataProvider={dataProvider} 
               layoutProvider={this.layoutProvider}
