@@ -21,7 +21,7 @@ class AudioProvider extends Component {
             soundObj:null,
             currentAudio:{},
             isPlaying:false,
-            currentAudioIndex:null,
+            currentAudioIndex:0,
             playbackPosition:null,
             playbackDuration:null
         }
@@ -78,11 +78,7 @@ class AudioProvider extends Component {
 
         this.totalAudioCount = tracks.length;
 
-        if(!this.state.playbackObj){
-            this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks],playbackObj:new Audio.Sound()});
-        }else{
-            this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks]});
-        }
+        this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks]});
     }
 
     updateState = (prevState, newState={}) => {

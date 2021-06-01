@@ -6,7 +6,7 @@ import color from '../misc/color';
 const About = () => {
     return(
         <Screen>
-            <ImageBackground source={require('../../assets/my-imgs/Buddha_11.jpg')} style={styles.backageImg} />
+            <ImageBackground source={require('../../assets/my-imgs/about_cover/Buddha.jpg')} style={styles.backageImg} />
             <View style={styles.container}>
                 <Text style={styles.text}>
                 ပဌာန်းဒေသနာ၊ ပရိတ်တရားတော်များကို နေ့ညမပြတ်၊ ကြည်ညိုစွာ နာယူနိုင်ကြပါစေ
@@ -18,19 +18,15 @@ const About = () => {
                 ကုသိုလ်အထူး ရရှိနိုင်ကြပါစေ...
                 </Text>
 
-                <View style={{flexDirection:'row', flexWrap:'wrap', marginTop: 220}}>
+                <View style={{flexDirection:'row', flexWrap:'wrap', marginTop: 280}}>
+                <Text style={[styles.text,{color:'dodgerblue',paddingRight:2}]}>
+                ကိုပေါက်
+                </Text>
+
                 <Text style={styles.text}>
-                Developed by 
+                မှ ဓမ္မဒါနကုသိုလ်ပြုအပ်ပါသည်။
                 </Text>
-
-                <Text style={[styles.text,{color:'dodgerblue',paddingLeft:2}]}>
-                    Ko Pauk
-                </Text>
-                
                 </View>
-        
-
-                
 
                 <Text style={styles.text}>
                 Ph. 09785780615

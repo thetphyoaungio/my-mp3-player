@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect,useState} from 'react';
 import {View, StyleSheet,Text, Dimensions, ImageBackground, Image, Animated} from 'react-native';
 import Screen from '../components/Screen';
 import color from '../misc/color';
@@ -6,8 +6,8 @@ import Slider from '@react-native-community/slider';
 import PlayerButton from '../components/PlayerButton';
 import {AudioContext} from '../context/AudioProvider';
 import { pause, play, playNext, resume } from '../misc/audioController';
-//import { MaterialCommunityIcons } from '@expo/vector-icons';
-//import playerImages,{ storeAudioForNextOpening, shuffle } from '../misc/helper';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+//import { storeAudioForNextOpening } from '../misc/helper';
 
 const {width} = Dimensions.get('window');
 
@@ -23,9 +23,9 @@ const Player = () => {
         return 0;
     }
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         context.loadPreviousAudio();
-    },[]);
+    },[]); */
 
     handlePlayPause = async () => {
         //play
@@ -141,15 +141,13 @@ const Player = () => {
         //storeAudioForNextOpening(audio, index)
     }
 
-    // const playerImgs = shuffle(playerImages);
-
     return (
         <Screen>
             <View style={styles.container}>
                 <Text style={styles.audioCount}>{`${context.currentAudioIndex + 1} / ${context.totalAudioCount}`}</Text>
                 <View style={styles.midBannerContainer}>
-                    {/* <MaterialCommunityIcons name="music-circle" size={300} color={context.isPlaying? color.ACTIVE_BG:color.FONT_MEDIUM} /> */}
-                    <ImageBackground source={context.currentAudio.artwork} style={styles.backageImg} />
+                    {context.currentAudio.artwork?<ImageBackground source={context.currentAudio.artwork} style={styles.backageImg} /> : 
+                    <MaterialCommunityIcons name="music-circle" size={300} color={color.FONT_MEDIUM} />}
                 </View>
 
                 <View style={styles.audioPlayerContainer}>
@@ -160,7 +158,7 @@ const Player = () => {
                     maximumValue={1} 
                     value={calculateSeekBar()}
                     minimumTrackTintColor={color.FONT_MEDIUM}
-                    maximumTrackTintColor={color.ACTIVE_BG}
+                    maximumTrackTintColor={color.ACTIVE_BG} 
                     />
                     <View style={styles.audioControllers}>
                         <PlayerButton 

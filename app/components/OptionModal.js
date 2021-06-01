@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius:20,
         borderTopLeftRadius:20,
         zIndex:1000,
+        paddingBottom:25,
     },
     title:{
         fontSize:20,
