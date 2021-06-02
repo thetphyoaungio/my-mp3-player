@@ -1,5 +1,5 @@
-import React, {useContext, useEffect,useState} from 'react';
-import {View, StyleSheet,Text, Dimensions, ImageBackground, Image, Animated} from 'react-native';
+import React, {useContext} from 'react';
+import {View, StyleSheet,Text, Dimensions, ImageBackground} from 'react-native';
 import Screen from '../components/Screen';
 import color from '../misc/color';
 import Slider from '@react-native-community/slider';
@@ -7,7 +7,6 @@ import PlayerButton from '../components/PlayerButton';
 import {AudioContext} from '../context/AudioProvider';
 import { pause, play, playNext, resume } from '../misc/audioController';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-//import { storeAudioForNextOpening } from '../misc/helper';
 
 const {width} = Dimensions.get('window');
 
@@ -22,10 +21,6 @@ const Player = () => {
         }
         return 0;
     }
-
-    /* useEffect(()=>{
-        context.loadPreviousAudio();
-    },[]); */
 
     handlePlayPause = async () => {
         //play
@@ -97,8 +92,6 @@ const Player = () => {
             playbackPosition:null,
             playbackDuration:null,
         });
-
-        //storeAudioForNextOpening(audio, index)
     }
 
     handlePrevious = async () => { 
@@ -137,8 +130,6 @@ const Player = () => {
             playbackPosition:null,
             playbackDuration:null,
         });
-
-        //storeAudioForNextOpening(audio, index)
     }
 
     return (

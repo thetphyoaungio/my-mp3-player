@@ -22,7 +22,8 @@
 				"foregroundImage": "./assets/Buddha_icon_1(1).png",
 				"backgroundColor": "#FFFFFF"
 			},
-			"package": "com.thetphyoaung.mymp3player"
+			"package": "com.thetphyoaung.mymp3player",
+			"versionCode": 2
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"

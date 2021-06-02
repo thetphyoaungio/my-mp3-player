@@ -7,7 +7,6 @@ import Screen from '../components/Screen';
 import OptionModal  from '../components/OptionModal';
 import {Audio} from 'expo-av';
 import {play, pause, resume, playNext} from '../misc/audioController';
-import { storeAudioForNextOpening } from '../misc/helper';
 
 class AudioList extends Component { 
   static contextType = AudioContext;
@@ -23,7 +22,6 @@ class AudioList extends Component {
   }
 
   componentDidMount(){
-    //this.context.loadPreviousAudio();
     Audio.setAudioModeAsync({
       staysActiveInBackground: true,
     });
@@ -83,8 +81,6 @@ class AudioList extends Component {
       });
 
       return playbackObj.setOnPlaybackStatusUpdate(this.context.onPlaybackStatusUpdate);
-
-      //return storeAudioForNextOpening(audio, index);
     }
 
     //pause the audio
@@ -119,8 +115,6 @@ class AudioList extends Component {
         isPlaying:true, 
         currentAudioIndex:index
       });
-
-      //return storeAudioForNextOpening(audio, index);
     }
 
   }
@@ -139,14 +133,6 @@ class AudioList extends Component {
               extendedState={{isPlaying}} />
 
               <OptionModal 
-              /* onPlayPress={()=>{console.log('Play Pressed!')}} 
-              onPlayListPress={()=>{
-                this.context.updateState(this.context, {
-                  addToPlayList: this.currentItem
-                });
-
-                this.props.navigation.navigate('PlayList');
-              }} */
               currentItem={this.currentItem}
               onClose={() => {
                 this.setState({...this.state, optionModalVisible:false})

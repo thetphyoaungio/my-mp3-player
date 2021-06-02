@@ -1,8 +1,6 @@
 import React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import AppNavigator from './app/navigation/AppNavigator';
-import AudioListItem from './app/components/AudioListItem';
-import {View} from 'react-native';
 import AudioProvider from './app/context/AudioProvider';
 import color from './app/misc/color';
 

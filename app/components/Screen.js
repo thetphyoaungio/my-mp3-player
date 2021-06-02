@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar, ImageBackground} from 'react-native';
+import {View, StyleSheet, StatusBar} from 'react-native';
 import color from '../misc/color';
 
 const Screen = ({children}) => {

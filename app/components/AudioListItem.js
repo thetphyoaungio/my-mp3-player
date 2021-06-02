@@ -3,7 +3,6 @@ import {View, Text, StyleSheet,Dimensions, TouchableWithoutFeedback} from 'react
 import { Entypo } from '@expo/vector-icons';
 import color from '../misc/color';
 
-
 const getThumbnailText = (title) => title[0];
 
 const timeFormatSToMS=(time)=> {   

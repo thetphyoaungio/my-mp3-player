@@ -1,6 +1,3 @@
-// import playerImages,{ shuffle } from '../app/misc/helper';
-
-// const playerImgs = shuffle(playerImages);
 export default tracks = [
     {
       id: 1,
@@ -66,71 +63,4 @@ export default tracks = [
       artwork: require('../assets/my-imgs/player_covers/selected/Buddha_23.jpg'),
       duration: 304
     },
-
-    /* {
-      id: 1,
-      uri: require('../tracks/test/ringtones/2015-best-sound-4073.mp3'),
-      title: "sample1",
-      artist: "Credit",
-      artwork: '',
-      duration: 8
-    },
-    {
-      id: 2,
-      uri: require('../tracks/test/ringtones/gopack-5168.mp3'),
-      title: "sample2",
-      artist: "Credit",
-      artwork: '',
-      duration: 4
-    },
-    {
-      id: 3,
-      uri: require('../tracks/test/ringtones/gs-16b-2c-44100hz.mp3'),
-      title: "sample3",
-      artist: "Credit",
-      artwork: '',
-      duration: 16
-    },
-    {
-      id: 4,
-      uri: require('../tracks/test/ringtones/heybabyringtone-3905.mp3'),
-      title: "sample4",
-      artist: "Credit",
-      artwork: '',
-      duration: 6
-    }, */
-
-    /* {
-      id: 5,
-      uri: require('../tracks/test/ringtones/2015-best-sound-4073.mp3'),
-      title: "sample5",
-      artist: "Credit",
-      artwork: playerImgs[4],
-      duration: 8
-    },
-    {
-      id: 6,
-      uri: require('../tracks/test/ringtones/gopack-5168.mp3'),
-      title: "sample6",
-      artist: "Credit",
-      artwork: playerImgs[5],
-      duration: 4
-    },
-    {
-      id: 7,
-      uri: require('../tracks/test/ringtones/gs-16b-2c-44100hz.mp3'),
-      title: "sample7",
-      artist: "Credit",
-      artwork: playerImgs[6],
-      duration: 16
-    },
-    {
-      id: 8,
-      uri: require('../tracks/test/ringtones/heybabyringtone-3905.mp3'),
-      title: "sample8",
-      artist: "Credit",
-      artwork: playerImgs[7],
-      duration: 6
-    }, */
-    
 ];

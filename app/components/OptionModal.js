@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Modal, StatusBar, Text, TouchableWithoutFeedback} from 'react-native';
 import color from '../misc/color';
 
-const OptionModal = ({visible, currentItem, onClose/*,onPlayPress,onPlayListPress*/}) => {
+const OptionModal = ({visible, currentItem, onClose}) => {
     const {title} = currentItem;
     return (
         <>
@@ -10,16 +10,6 @@ const OptionModal = ({visible, currentItem, onClose/*,onPlayPress,onPlayListPres
         <Modal animationType='fade' transparent visible={visible}>
             <View style={styles.modal}>
                 <Text style={styles.title}>{title}</Text>
-                {/* numberOfLines={2} */}
-                
-                {/* <View style={styles.optionContainer}>
-                    <TouchableWithoutFeedback onPress={onPlayPress}>
-                        <Text style={styles.option}>Play</Text>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={onPlayListPress}>
-                        <Text style={styles.option}>Add to playlist</Text>
-                    </TouchableWithoutFeedback>
-                </View> */}
             </View>
             <TouchableWithoutFeedback onPress={onClose}>
                 <View style={styles.modalBg} />

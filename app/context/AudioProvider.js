@@ -1,10 +1,7 @@
 import React, { Component, createContext } from 'react';
 import {DataProvider} from 'recyclerlistview';
 import tracks from '../../tracks/tracks.js';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Audio}from 'expo-av';
-import {storeAudioForNextOpening} from '../misc/helper';
-import {play, pause, resume, playNext} from '../misc/audioController';
+import {playNext} from '../misc/audioController';
 
 export const AudioContext = createContext();
 
@@ -52,8 +49,6 @@ class AudioProvider extends Component {
               playbackPosition:null,
               playbackDuration:null
             });
-    
-            //return await storeAudioForNextOpening(this.state.audioFiles[0], 0);
           }
     
           //otherwise we want to select another audio
@@ -66,8 +61,6 @@ class AudioProvider extends Component {
             isPlaying:true, 
             currentAudioIndex:nextAudioIndex
           });
-    
-          //await storeAudioForNextOpening(audio, nextAudioIndex);
         }
     }
 
@@ -83,22 +76,6 @@ class AudioProvider extends Component {
 
     updateState = (prevState, newState={}) => {
         this.setState({...prevState, ...newState})
-    }
-
-    loadPreviousAudio = async () => {
-        let previousAudio = await AsyncStorage.getItem('previousAudio');
-        let currentAudio, currentAudioIndex;
-
-        if(!previousAudio){
-            currentAudio = this.state.audioFiles[0];
-            currentAudioIndex = 0;
-        }else{
-            previousAudio=JSON.parse(previousAudio);
-            currentAudio = previousAudio.audio;
-            currentAudioIndex = previousAudio.index;
-        }
-
-        this.setState({...this.state, currentAudio, currentAudioIndex})
     }
 
     render() {
@@ -131,7 +108,6 @@ class AudioProvider extends Component {
                 playbackPosition,
                 playbackDuration,
                 updateState:this.updateState,
-                loadPreviousAudio:this.loadPreviousAudio,
                 onPlaybackStatusUpdate:this.onPlaybackStatusUpdate,
             }}>
                 {this.props.children}

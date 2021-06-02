@@ -1,5 +1,5 @@
-import React, {useContext, useEffect} from 'react';
-import {View, StyleSheet,Text, ImageBackground, Linking} from 'react-native';
+import React from 'react';
+import {View, StyleSheet,Text, ImageBackground } from 'react-native';
 import Screen from '../components/Screen';
 import color from '../misc/color';
 
