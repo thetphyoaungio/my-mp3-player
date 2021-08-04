@@ -6,7 +6,7 @@ import AudioListItem from '../components/AudioListItem';
 import Screen from '../components/Screen';
 import OptionModal  from '../components/OptionModal';
 import {Audio} from 'expo-av';
-import {play, pause, resume, playNext} from '../misc/audioController';
+import {selectAudio} from '../misc/audioController';
 
 class AudioList extends Component { 
   static contextType = AudioContext;
@@ -57,72 +57,15 @@ class AudioList extends Component {
   };
 
   handleAudioPress = async (audio) => {
-    const {
-      playbackObj, 
-      soundObj, 
-      currentAudio, 
-      updateState, 
-      audioFiles
-    } = this.context;
-    
-    //play first time
-    if(!soundObj){
-      const playbackObj = new Audio.Sound();
-      
-      const status = await play(playbackObj,audio.uri);
-      const index = audioFiles.indexOf(audio);
-
-      updateState(this.context, {
-        playbackObj:playbackObj, 
-        soundObj:status, 
-        currentAudio:audio, 
-        isPlaying:true, 
-        currentAudioIndex:index
-      });
-
-      return playbackObj.setOnPlaybackStatusUpdate(this.context.onPlaybackStatusUpdate);
-    }
-
-    //pause the audio
-    if( soundObj.isLoaded &&  soundObj.isPlaying && currentAudio.id===audio.id){
-      const status = await pause(playbackObj);
-      
-      return updateState(this.context, {
-        soundObj:status, 
-        isPlaying:false
-      });
-    }
-
-    //resume the audio
-    if(soundObj.isLoaded && !soundObj.isPlaying && currentAudio.id===audio.id){
-      const status = await resume(playbackObj);
-      
-      return updateState(this.context, {
-        soundObj:status, 
-        isPlaying:true
-      });
-    }
-
-    //play next
-    if(soundObj.isLoaded && currentAudio.id!==audio.id){
-      const status = await playNext(playbackObj,audio.uri);
-      
-      const index = audioFiles.indexOf(audio);
-
-      return updateState(this.context, {
-        soundObj:status, 
-        currentAudio:audio, 
-        isPlaying:true, 
-        currentAudioIndex:index
-      });
-    }
-
+    await selectAudio(audio, this.context);
   }
 
   render() {
     return (
       <AudioContext.Consumer>
         {({dataProvider, isPlaying})=>{
+          if(!dataProvider._data.length) return null;
+
           return(
             <Screen>
               <ImageBackground source={require('../../assets/my-imgs/audiolist_cover/Buddha_2.jpg')} style={styles.backageImg} />

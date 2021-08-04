@@ -27,41 +27,40 @@ class AudioProvider extends Component {
     }
 
     onPlaybackStatusUpdate = async (playbackStatus) => {
-        if(playbackStatus.isLoaded && playbackStatus.isPlaying){
-          this.updateState(this,{
-            playbackPosition:playbackStatus.positionMillis,
-            playbackDuration:playbackStatus.durationMillis,
-          })
-        }
-    
-        if(playbackStatus.didJustFinish){
-          const nextAudioIndex = this.state.currentAudioIndex + 1;
-    
-          //if there is no next audio or current audio is the last
-          if(nextAudioIndex >= this.totalAudioCount){
-            
-            await this.state.playbackObj.unloadAsync();
-            return this.updateState(this, {
-              soundObj:null, 
-              currentAudio:this.state.audioFiles[0], 
-              isPlaying:false, 
-              currentAudioIndex:0, 
-              playbackPosition:null,
-              playbackDuration:null
-            });
-          }
-    
-          //otherwise we want to select another audio
-          const audio = this.state.audioFiles[nextAudioIndex];
-          const status = await playNext(this.state.playbackObj, audio.uri);
-    
-          this.updateState(this, {
-            soundObj:status, 
-            currentAudio:audio, 
-            isPlaying:true, 
-            currentAudioIndex:nextAudioIndex
+      if(playbackStatus.isLoaded && playbackStatus.isPlaying){
+        this.updateState(this,{
+          playbackPosition:playbackStatus.positionMillis,
+          playbackDuration:playbackStatus.durationMillis,
+        });
+      }
+      
+      if(playbackStatus.didJustFinish){
+        const nextAudioIndex = this.state.currentAudioIndex + 1;
+        
+        //if there is no next audio or current audio is the last
+        if(nextAudioIndex >= this.totalAudioCount){
+          await this.state.playbackObj.unloadAsync();
+          return this.updateState(this, {
+            soundObj:null, 
+            currentAudio:this.state.audioFiles[0], 
+            isPlaying:false, 
+            currentAudioIndex:0, 
+            playbackPosition:null,
+            playbackDuration:null
           });
         }
+    
+        //otherwise we want to select another audio
+        const audio = this.state.audioFiles[nextAudioIndex];
+        const status = await playNext(this.state.playbackObj, audio.uri);
+    
+        this.updateState(this, {
+          soundObj:status, 
+          currentAudio:audio, 
+          isPlaying:true, 
+          currentAudioIndex:nextAudioIndex
+        });
+      }
     }
 
     componentDidMount(){
@@ -70,8 +69,6 @@ class AudioProvider extends Component {
         this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks]});
 
         this.totalAudioCount = tracks.length;
-
-        this.setState({...this.state, dataProvider:dataProvider.cloneWithRows([...audioFiles, ...tracks]), audioFiles:[...audioFiles, ...tracks]});
     }
 
     updateState = (prevState, newState={}) => {

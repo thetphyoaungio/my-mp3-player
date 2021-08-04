@@ -3,7 +3,7 @@ import {AntDesign} from '@expo/vector-icons';
 import color from '../misc/color';
 
 const PlayerButton = (props) => {
-    const {iconType, size=40, iconColor=color.FONT, onPress} = props;
+    const {iconType, size=40, iconColor=color.FONT, onPress, disabled} = props;
 
     const getIconName = (type) => {
         switch(type){
@@ -28,7 +28,8 @@ const PlayerButton = (props) => {
         onPress={onPress}
         name={getIconName(iconType)}
         size={size}
-        color={iconColor} />
+        color={disabled?color.FONT_MEDIUM:iconColor} 
+        disabled={disabled} />
     )
 }
 

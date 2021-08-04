@@ -12,7 +12,7 @@ const About = () => {
                 ပဌာန်းဒေသနာ၊ ပရိတ်တရားတော်များကို နေ့ညမပြတ်၊ ကြည်ညိုစွာ နာယူနိုင်ကြပါစေ
                 </Text>
 
-                <Text style={styles.text}>🙏🙏</Text>
+                <Text style={styles.text}>🙏🙏🙏</Text>
 
                 <Text style={styles.text}>
                 ကုသိုလ်အထူး ရရှိနိုင်ကြပါစေ...

@@ -9,58 +9,74 @@ export default tracks = [
     },
     {
       id: 2,
-      uri: require('../tracks/03.မေတ္တာပို့ဓမ္မတေး.mp3'),
-      title: "မေတ္တာပို့ ဓမ္မတေး",
+	  uri: require('../tracks/02.မေတ္တာပို့ဓမ္မတေး.mp3'),
+      title: "မေတ္တာပို့ဓမ္မတေး",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_8.jpg'),
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_2.jpg'),
       duration: 549
     },
     {
       id: 3,
-      uri: require('../tracks/04.မေတ္တာသုတ်.mp3'),
-      title: "မေတ္တာသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
+      uri: require('../tracks/03.မဟာသမယသုတ်-ပါဠိ-မြန်မာ-နတ်ချစ်ဆေးဂါထာ.mp3'),
+      title: "မဟာသမယသုတ် နတ်ချစ်ဆေးဂါထာ",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_15.jpg'),
-      duration: 1190
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_3.jpg'),
+      duration: 1275
     },
     {
       id: 4,
-      uri: require('../tracks/05.ပရိတ်ကြီး၁၁သုတ်.mp3'),
-      title: "ပရိတ်ကြီး၁၁သုတ်၊ တောင်တန်းသာသနာပြု ဆရာတော်ဘုရားကြီး",
+      uri: require('../tracks/04.မေတ္တာသုတ်.mp3'),
+      title: "မေတ္တာသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_19.jpg'),
-      duration: 3554
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_4.jpg'),
+      duration: 1190
     },
     {
       id: 5,
-      uri: require('../tracks/06.ပဌာန်းတရားတော်.mp3'),
-      title: "ပဌာန်းဒေသနာတော်၊ ကြာနီကန်ဆရာတော်",
+      uri: require('../tracks/05.ပရိတ်ကြီး၁၁သုတ်.mp3'),
+      title: "ပရိတ်ကြီး၁၁သုတ်၊ တောင်တန်းသာသနာပြု ဆရာတော်ဘုရားကြီး",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_14.jpg'),
-      duration: 3655
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_1.jpg'),
+      duration: 3554
     },
     {
       id: 6,
-      uri: require('../tracks/07.ဓမ္မစင်္ကြာ၊အနတ္တလက္ခဏသုတ်၊မဟာသမယသုတ်၊မင်းကွန်းဆရာတော်ဘုရားကြီး.mp3'),
-      title: "ဓမ္မစင်္ကြာ၊ အနတ္တလက္ခဏသုတ်၊ မဟာသမယသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
+      uri: require('../tracks/06.ပဌာန်းတရားတော်.mp3'),
+      title: "ပဌာန်းဒေသနာတော်၊ ကြာနီကန်ဆရာတော်",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_21.jpg'),
-      duration: 2579
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_2.jpg'),
+      duration: 3655
     },
     {
       id: 7,
-      uri: require('../tracks/02.မေတ္တာပို့မင်္ဂလာတေး.mp3'),
-      title: "မေတ္တာပို့ မင်္ဂလာတေး",
+	  uri: require('../tracks/07.ဓမ္မစင်္ကြာ၊အနတ္တလက္ခဏသုတ်၊မဟာသမယသုတ်၊မင်းကွန်းဆရာတော်ဘုရားကြီး.mp3'),
+      title: "ဓမ္မစင်္ကြာ၊ အနတ္တလက္ခဏသုတ်၊ မဟာသမယသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_2.jpg'),
-      duration: 221
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_3.jpg'),
+      duration: 2579
     },
     {
       id: 8,
-      uri: require('../tracks/08.မေတ္တာပို့ဓမ္မတေး၂.mp3'),
-      title: "မေတ္တာပို့ ဓမ္မတေး ၂",
+      uri: require('../tracks/08.မနက်တိုင်းဖွင့်ထားပါပဋ္ဌာန်း၊ဘုရားအနေကဇာတင်၊ခုနစ်ရက်သားသမီးမေတ္တာပို့.mp3'),
+      title: "မနက်တိုင်းဖွင့်ထားပါ ပဋ္ဌာန်း၊ ဘုရားအနေကဇာတင်၊ ခုနစ်ရက်သားသမီးမေတ္တာပို့",
       artist: "Credit",
-      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_23.jpg'),
-      duration: 304
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_4.jpg'),
+      duration: 3670
+    },
+    {
+      id: 9,
+      uri: require('../tracks/09.ဂုဏ်တော်ကိုးပါး-ဆို-မာမာအေး.mp3'),
+      title: "ဂုဏ်တော်ကိုးပါး ဆို မာမာအေး",
+      artist: "Credit",
+      artwork: require('../assets/my-imgs/player_covers/selected/Buddha_1.jpg'),
+      duration: 545
+    },
+    {
+      id: 10,
+        uri: require('../tracks/10.မေတ္တာပို့ဓမ္မတေး၂.mp3'),
+        title: "မေတ္တာပို့ ဓမ္မတေး ၂",
+        artist: "Credit",
+        artwork: require('../assets/my-imgs/player_covers/selected/Buddha_2.jpg'),
+        duration: 304
     },
 ];
