@@ -23,7 +23,7 @@
 				"backgroundColor": "#FFFFFF"
 			},
 			"package": "com.thetphyoaung.mymp3player",
-			"versionCode": 4,
+			"versionCode": 5,
 			"config": {
 				"googleMobileAdsAppId": "ca-app-pub-5889748970088125~8363618981"
 			}
