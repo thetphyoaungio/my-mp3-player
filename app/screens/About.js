@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet,Text, ImageBackground } from 'react-native';
 import Screen from '../components/Screen';
 import color from '../misc/color';
+import {AdMobBanner} from 'expo-ads-admob';
 
 const About = () => {
     return(
@@ -32,6 +33,12 @@ const About = () => {
                 Ph. 09785780615
                 </Text>
             </View>
+
+            <AdMobBanner  style={{alignItems: 'center',justifyContent: 'center'}}
+            bannerSize='banner' 
+            adUnitID='ca-app-pub-5889748970088125/9548708144' 
+            servePersonalizedAds={false}
+            />
         </Screen>
     )
 }

@@ -8,6 +8,7 @@ import {AudioContext} from '../context/AudioProvider';
 import { pause, selectAudio, changeAudio, moveAudio } from '../misc/audioController';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { convertTime } from '../misc/helper';
+import {AdMobBanner} from 'expo-ads-admob';
 
 const {width} = Dimensions.get('window');
 
@@ -92,6 +93,12 @@ const Player = () => {
                         iconType='NEXT' 
                         disabled={!context.currentAudio.artwork} />
                     </View>
+
+                    <AdMobBanner  style={{alignItems: 'center',justifyContent: 'center'}}
+                    bannerSize='banner' 
+                    adUnitID='ca-app-pub-5889748970088125/9548708144' 
+                    servePersonalizedAds={false}
+                    />
                 </View>
             </View>
         </Screen>

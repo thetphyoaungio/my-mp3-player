@@ -7,6 +7,7 @@ import Screen from '../components/Screen';
 import OptionModal  from '../components/OptionModal';
 import {Audio} from 'expo-av';
 import {selectAudio} from '../misc/audioController';
+import {AdMobBanner} from 'expo-ads-admob';
 
 class AudioList extends Component { 
   static contextType = AudioContext;
@@ -74,6 +75,12 @@ class AudioList extends Component {
               layoutProvider={this.layoutProvider}
               rowRenderer={this.rowRenderer}
               extendedState={{isPlaying}} />
+
+              <AdMobBanner  style={{alignItems: 'center',justifyContent: 'center'}}
+              bannerSize='banner' 
+              adUnitID='ca-app-pub-5889748970088125/9548708144' 
+              servePersonalizedAds={false}
+              />
 
               <OptionModal 
               currentItem={this.currentItem}
