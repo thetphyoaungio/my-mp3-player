@@ -116,7 +116,6 @@ export const changeAudio = async (context, type) => {
     if(type==='next'){
       const isLastAudio = currentAudioIndex + 1 === totalAudioCount;
       audio = audioFiles[currentAudioIndex + 1];
-      
 
       if(!isLoaded && !isLastAudio){
         index = currentAudioIndex + 1;

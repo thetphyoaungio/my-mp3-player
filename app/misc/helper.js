@@ -1,3 +1,5 @@
+import {AdMobInterstitial} from 'expo-ads-admob';
+
 export const convertTime=(time)=> {   
     // Hours, minutes and seconds
     var hrs = ~~(time / 3600);
@@ -12,4 +14,13 @@ export const convertTime=(time)=> {
     ret += "" + mins + ":" + (secs < 10 ? "0" : "");
     ret += "" + secs;
     return ret;
+}
+
+export const setAdMobInterstitial = async () => {
+    AdMobInterstitial.removeAllListeners();
+
+    AdMobInterstitial.setAdUnitID('ca-app-pub-5889748970088125/8654853900');
+    
+    await AdMobInterstitial.requestAdAsync({servePersonalizedAds:false});
+    await AdMobInterstitial.showAdAsync();
 }

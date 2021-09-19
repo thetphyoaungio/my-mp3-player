@@ -2,6 +2,7 @@ import React, { Component, createContext } from 'react';
 import {DataProvider} from 'recyclerlistview';
 import tracks from '../../tracks/tracks.js';
 import {playNext} from '../misc/audioController';
+import {setAdMobInterstitial} from '../misc/helper';
 
 export const AudioContext = createContext();
 
@@ -26,18 +27,8 @@ class AudioProvider extends Component {
         this.totalAudioCount = 0;
     }
 
-    onPlaybackStatusUpdate = async (playbackStatus) => {
-      if(playbackStatus.isLoaded && playbackStatus.isPlaying){
-        this.updateState(this,{
-          playbackPosition:playbackStatus.positionMillis,
-          playbackDuration:playbackStatus.durationMillis,
-        });
-      }
-      
-      if(playbackStatus.didJustFinish){
-        const nextAudioIndex = this.state.currentAudioIndex + 1;
-        
-        //if there is no next audio or current audio is the last
+    onGoingAudio = async (nextAudioIndex) => {
+      //if there is no next audio or current audio is the last
         if(nextAudioIndex >= this.totalAudioCount){
           await this.state.playbackObj.unloadAsync();
           return this.updateState(this, {
@@ -60,6 +51,49 @@ class AudioProvider extends Component {
           isPlaying:true, 
           currentAudioIndex:nextAudioIndex
         });
+    }
+
+    onPlaybackStatusUpdate = async (playbackStatus) => {
+      if(playbackStatus.isLoaded && playbackStatus.isPlaying){
+        this.updateState(this,{
+          playbackPosition:playbackStatus.positionMillis,
+          playbackDuration:playbackStatus.durationMillis,
+        });
+      }
+      
+      if(playbackStatus.didJustFinish){
+        const nextAudioIndex = this.state.currentAudioIndex + 1;
+
+        if((nextAudioIndex+1)%5===0 && !(nextAudioIndex >= this.totalAudioCount)) {
+          setAdMobInterstitial().then(res => {this.onGoingAudio(nextAudioIndex)});
+        }else{
+          this.onGoingAudio(nextAudioIndex);
+        }
+        
+        // refactor as 'onGoingAudio' method!!!!
+        /* //if there is no next audio or current audio is the last
+        if(nextAudioIndex >= this.totalAudioCount){
+          await this.state.playbackObj.unloadAsync();
+          return this.updateState(this, {
+            soundObj:null, 
+            currentAudio:this.state.audioFiles[0], 
+            isPlaying:false, 
+            currentAudioIndex:0, 
+            playbackPosition:null,
+            playbackDuration:null
+          });
+        }
+    
+        //otherwise we want to select another audio
+        const audio = this.state.audioFiles[nextAudioIndex];
+        const status = await playNext(this.state.playbackObj, audio.uri);
+    
+        this.updateState(this, {
+          soundObj:status, 
+          currentAudio:audio, 
+          isPlaying:true, 
+          currentAudioIndex:nextAudioIndex
+        }); */
       }
     }
 

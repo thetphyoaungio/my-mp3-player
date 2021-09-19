@@ -9,7 +9,7 @@ export default tracks = [
     },
     {
       id: 2,
-	  uri: require('../tracks/02.မေတ္တာပို့ဓမ္မတေး.mp3'),
+	    uri: require('../tracks/02.မေတ္တာပို့ဓမ္မတေး.mp3'),
       title: "မေတ္တာပို့ဓမ္မတေး",
       artist: "Credit",
       artwork: require('../assets/my-imgs/player_covers/selected/Buddha_2.jpg'),
@@ -49,7 +49,7 @@ export default tracks = [
     },
     {
       id: 7,
-	  uri: require('../tracks/07.ဓမ္မစင်္ကြာ၊အနတ္တလက္ခဏသုတ်၊မဟာသမယသုတ်၊မင်းကွန်းဆရာတော်ဘုရားကြီး.mp3'),
+	    uri: require('../tracks/07.ဓမ္မစင်္ကြာ၊အနတ္တလက္ခဏသုတ်၊မဟာသမယသုတ်၊မင်းကွန်းဆရာတော်ဘုရားကြီး.mp3'),
       title: "ဓမ္မစင်္ကြာ၊ အနတ္တလက္ခဏသုတ်၊ မဟာသမယသုတ်၊ မင်းကွန်းဆရာတော်ဘုရားကြီး",
       artist: "Credit",
       artwork: require('../assets/my-imgs/player_covers/selected/Buddha_3.jpg'),
