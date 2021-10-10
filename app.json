@@ -1,35 +1,35 @@
 {
-	"expo": {
-		"name": "မင်္ဂလာဓမ္မတရားတော်များ",
-		"slug": "MingalarDhammaTayartawMyar",
-		"version": "1.0.3",
-		"orientation": "portrait",
-		"icon": "./assets/Buddha_icon_1(1).png",
-		"splash": {
-			"image": "./assets/Buddha_icon_4.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/Buddha_icon_1(1).png",
-				"backgroundColor": "#FFFFFF"
-			},
-			"package": "com.thetphyoaung.mymp3player",
-			"versionCode": 6,
-			"config": {
-				"googleMobileAdsAppId": "ca-app-pub-5889748970088125~8363618981"
-			}
-		},
-		"web": {
-			"favicon": "./assets/favicon.png"
-		}
-	}
+  "expo": {
+    "name": "မင်္ဂလာဓမ္မတရားတော်များ",
+    "slug": "MingalarDhammaTayartawMyar",
+    "version": "1.0.4",
+    "orientation": "portrait",
+    "icon": "./assets/Buddha_icon_1(1).png",
+    "splash": {
+      "image": "./assets/Buddha_icon_4.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Buddha_icon_1(1).png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.thetphyoaung.mymp3player",
+      "versionCode": 7,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-5889748970088125~8363618981"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
 }
