@@ -13,22 +13,26 @@ const About = () => {
       />
       <View style={styles.container}>
         <Text style={styles.text}>
-          ပဌာန်းဒေသနာ၊ ပရိတ်တရားတော်များကို နေ့ညမပြတ်၊ ကြည်ညိုစွာ
-          နာယူနိုင်ကြပါစေ
+          Hello ပဌာန်းဒေသနာ၊ ပရိတ်တရားတော်များကို နေ့ညမပြတ်၊ ကြည်ညိုစွာ
+          နာယူနိုင်ကြပါစေ Thanks you!
         </Text>
 
         <Text style={styles.text}>🙏🙏🙏</Text>
 
-        <Text style={styles.text}>ကုသိုလ်အထူး ရရှိနိုင်ကြပါစေ...</Text>
+        <Text style={styles.text}>
+          Be good and ကုသိုလ်အထူး ရရှိနိုင်ကြပါစေ...
+        </Text>
 
         <View
           style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 280 }}
         >
           <Text style={[styles.text, { color: "dodgerblue", paddingRight: 2 }]}>
-            ကိုပေါက်
+            Ko ကိုပေါက် Pauk
           </Text>
 
-          <Text style={styles.text}>မှ ဓမ္မဒါနကုသိုလ်ပြုအပ်ပါသည်။</Text>
+          <Text style={styles.text}>
+            မှ ဓမ္မဒါနကုသိုလ်ပြုအပ်ပါသည်။ Thanks you!
+          </Text>
         </View>
 
         <Text style={styles.text}>Email: kopauk46@gmail.com</Text>
